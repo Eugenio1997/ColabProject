@@ -1,0 +1,12 @@
+mat-sidenav-container{
+    height: 100%;
+}
+
+.wrapper-userList{
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80vw;
+}
+
