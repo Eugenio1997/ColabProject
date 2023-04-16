@@ -1,4 +1,4 @@
-<div>
+
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container style="margin: 8px" matColumnDef="Name">
       <th mat-header-cell *matHeaderCellDef>First name</th>
@@ -43,21 +43,16 @@
     [length]="100"
     showFirstLastButtons
   ></mat-paginator>
-</div>
+
 
 <div
-  style="
-    display: flex;
-    flex-direction: row;
-    justify-content: right;
-    align-items: center;
-  "
+  class="box-btnGoBack"
 >
   <button
     (click)="goBack()"
-    style="margin-top: 40px"
     mat-raised-button
     color="primary"
+    id="btnGoBack"
   >
     Go Back
   </button>
