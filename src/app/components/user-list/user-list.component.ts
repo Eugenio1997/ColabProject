@@ -13,7 +13,6 @@ import { Router } from '@angular/router';
 })
 export class UserListComponent implements AfterViewInit {
 
-
   displayedColumns: string[] = ['Name','Gender','Location','Email','Dob', 'Phone'];
   dataSource!: MatTableDataSource<any>;
   @ViewChild('paginator') paginator!: MatPaginator;
@@ -27,9 +26,7 @@ export class UserListComponent implements AfterViewInit {
   }
 
   ngOnInit(): void {
-    console.log('USER LIST');
     this._titleService.setTitle('Userlist');
-    this.getData();
   }
 
   public goBack(){
@@ -37,13 +34,11 @@ export class UserListComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource = new MatTableDataSource();
+    this.getData();
   }
   private getData(){
     this._userService.getApiUsers()
       .subscribe( (resp: any ) => {
-        console.log(resp);
         this.dataSource.data = resp.results;
         this.dataSource.paginator = this.paginator;
       });
