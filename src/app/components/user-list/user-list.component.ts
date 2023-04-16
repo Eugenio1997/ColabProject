@@ -13,6 +13,8 @@ import { Router } from '@angular/router';
 })
 export class UserListComponent implements AfterViewInit {
 
+  hasLoadedData: boolean = false;
+  itemCount: number = 100;
   displayedColumns: string[] = ['Name','Gender','Location','Email','Dob', 'Phone'];
   dataSource!: MatTableDataSource<any>;
   @ViewChild('paginator') paginator!: MatPaginator;
@@ -34,16 +36,20 @@ export class UserListComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.getData();
-  }
-  private getData(){
-    this._userService.getApiUsers()
-      .subscribe( (resp: any ) => {
-        this.dataSource.data = resp.results;
-        this.dataSource.paginator = this.paginator;
-      });
+    this.getData(10, 1);
   }
 
+  public handlePage(event: any){
+    this.getData(event.pageSize, event.pageIndex + 1);
+  }
+
+  private getData(pageSize: number, pageNumber: number){
+    this._userService.getApiUsers(pageSize, pageNumber)
+      .subscribe( (resp: any ) => {
+        this.dataSource.data = resp.results;
+        this.hasLoadedData = true;
+      });
+  }
 }
 
 

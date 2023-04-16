@@ -9,8 +9,8 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  public getApiUsers():Observable<any>{
-    return this.http.get(this.baseURL + "?results=100");
+  public getApiUsers(pageSize: number, pageNumber: number):Observable<any>{
+    return this.http.get(this.baseURL + `?results=${pageSize}&page=${pageNumber}`);
   }
 
 }
